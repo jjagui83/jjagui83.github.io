@@ -5,23 +5,73 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSS variables and JS</title>
+
 </head>
 <body>
     <h2>Update CSS variables with <span>JS</span></h2>
 
     <div class="controls">
         <label for="spacing">Spacing</label>
-        <input type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+        <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
 
         <label for="blur">Blur</label>
-        <input type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+        <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
 
         <label for="base">Base</label>
-        <input type="color" name="base" value="#CCB5E0">
+        <input id="base" type="color" name="base" value="#CCB5E0">
     </div>
 
     <img src="https://images.unsplash.com/photo-1543571547-fddbbdb95ff5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="tokyo nights">
+    
+    <style>
+    :root {
+        --base:#CCB5E0;
+        --spacing:10px;
+        --blur:10px;
+    }
+    
+    img {
+        padding: var(--spacing);
+        background: var(--base);
+        filter: blur(var(--blur));
+    
+    }
 
+    h1 {
+        color: var(--base);
+    }
+    
+ 
+    
+    body{
+        text-align: center;
+        background: darkblue;
+        color: darkgray;
+        font-family: monospace;
+        font-weight: 100;
+        font-size: 50px;
+    }
+    
+    .controls {
+        margin-bottom: 50px;
+    }
+    input {
+        width: 100px;
+    }
+    
+</style>
+    
+    
+    <script>
+        const inputs = document.querySelectorAll('.controls input');
+        function handleUpdate() {
+            const suffix = this.dataset.sizing || '';
+            document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+            
+        }
+        inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+    </script>
 
 </body>
 </html>

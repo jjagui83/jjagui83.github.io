@@ -1,0 +1,32 @@
+:root {
+    --base:#CCB5E0;
+    --spacing:10px;
+    --blur:10px;
+}
+
+img {
+    padding: var(--spacing);
+    background: var(--base);
+    filter: blur(var(--blur));
+
+}
+
+body {
+    text-align: center;
+}
+
+body{
+    background: darkblue;
+    color: darkgray;
+    font-family: monospace;
+    font-weight: 100;
+    font-size: 50px;
+}
+
+.controls {
+    margin-bottom: 50px;
+}
+a {
+    color: var(--base);
+    text-decoration: none;
+}
